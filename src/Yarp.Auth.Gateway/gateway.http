@@ -1,0 +1,16 @@
+﻿@BaseUrl = http://localhost:4000
+@AccessToken = CfDJ8JYz1AwiGMFLhpLpJelDOKWSgOfS0Mi3SBFc8vtDKZgN4AqJFiUr1Dg0ref2TkrobA4r_BfuCXH66jp_PBX08eHtUb-lwLJNhzlf_Gc9JW4jaM-yhmRSno9AobCFZ6UNhPX2GNeh7SKSRjORewRyjMEsZ8auDGVlHFhWQ67Fq4YbwgPLs_Bc9dK2DHD-vF5Inybs51NMm6R6NJukWyweLWiha6grG8sOUVcNf_g2LKvvtlOgxslXHFD0Y4UrtXg7vf9bpNthfcJYk8rWhVbh8YEauxRKrFKkVZ4YNRNYsUSD8zMbzOfI0pohzaInBOrVdCUDyulL9pHFRi1cKr_FNj7OcJpWUc1ejzTHmZRK4WOgZGgjnl2IirsPJstQgOROUB9Whu51_W8ZF-op7TQoU8E
+
+### Login
+
+GET {{BaseUrl}}/login?firstApi=false&secondApi=true
+
+### Proxy api/hello
+
+GET {{BaseUrl}}/first-api/hello
+Authorization: Bearer {{AccessToken}}
+
+### Proxy api/hello
+
+GET {{BaseUrl}}/second-api/hello
+Authorization: Bearer {{AccessToken}}
