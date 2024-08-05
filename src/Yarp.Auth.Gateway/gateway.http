@@ -1,16 +1,35 @@
 ﻿@BaseUrl = http://localhost:4000
-@AccessToken = CfDJ8JYz1AwiGMFLhpLpJelDOKWSgOfS0Mi3SBFc8vtDKZgN4AqJFiUr1Dg0ref2TkrobA4r_BfuCXH66jp_PBX08eHtUb-lwLJNhzlf_Gc9JW4jaM-yhmRSno9AobCFZ6UNhPX2GNeh7SKSRjORewRyjMEsZ8auDGVlHFhWQ67Fq4YbwgPLs_Bc9dK2DHD-vF5Inybs51NMm6R6NJukWyweLWiha6grG8sOUVcNf_g2LKvvtlOgxslXHFD0Y4UrtXg7vf9bpNthfcJYk8rWhVbh8YEauxRKrFKkVZ4YNRNYsUSD8zMbzOfI0pohzaInBOrVdCUDyulL9pHFRi1cKr_FNj7OcJpWUc1ejzTHmZRK4WOgZGgjnl2IirsPJstQgOROUB9Whu51_W8ZF-op7TQoU8E
+@AccessToken = CfDJ8I2GhyGDxAVEq2tb7WPde-HoW6tEBYNabPVnyRw_XPixT8DmOA54krpl60Xd4T1Z1gsNz2mI6MmatEprMGIKwHXLBqw4UuKhxRLGILEwo51pFzdj6VuV7OF-NA1BGICoOdzZFLDSgQY7IEdGaddPOmOD6K2Npmgx45guCTzbuqJQNLwzCi-62xF5HR0rpxYOiBeKzHol6JFUFuKPYjMgDjzWdqONvObTgvMQj_7dZVrrVQfg-Nlg7ZRd_O6Rf8fbTnKQALDtVt_CLhijdqIdD-GHFscs4Sm2yihlQLJh2ay-vqxCFlXwVdBgtRDeGAJUvMCiOG_N5gaIWonhn5bQpSElrEEetThNafQ1tw55C9f62It5OSncl8oHN50JAX7u-IQcumoFujFixToisuTC7zbI354AVxelEj2R2WaMVFdpYWfH2oo7hie7O2NnO-iDAiLsyAyMiqIOPnxseoZyWr0EjKy44sw0xattoSNN2oUZoRegpXCcdA0rZgh1jSKuog
 
 ### Login
-
 GET {{BaseUrl}}/login?firstApi=false&secondApi=true
 
 ### Proxy api/hello
-
 GET {{BaseUrl}}/first-api/hello
 Authorization: Bearer {{AccessToken}}
 
 ### Proxy api/hello
+GET {{BaseUrl}}/first-api/hello
+Authorization: Bearer {{AccessToken}}
+X-Api-Version: 1
 
-GET {{BaseUrl}}/second-api/hello
+### Proxy api/hello
+GET {{BaseUrl}}/first-api/hello
+Authorization: Bearer {{AccessToken}}
+X-Api-Version: 2
+
+### Proxy api/v1/hello
+GET {{BaseUrl}}/first-api/v1/hello
+Authorization: Bearer {{AccessToken}}
+
+### Proxy api/v2/hello
+GET {{BaseUrl}}/first-api/v2/hello
+Authorization: Bearer {{AccessToken}}
+
+### Proxy api2/hello
+GET {{BaseUrl}}/second-api/v1/hello
+Authorization: Bearer {{AccessToken}}
+
+### Proxy api2/hello
+GET {{BaseUrl}}/second-api/v2/hello
 Authorization: Bearer {{AccessToken}}

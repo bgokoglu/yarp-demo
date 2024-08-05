@@ -23,14 +23,16 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGet("login", (bool firstApi = false, bool secondApi = false) =>
+app.MapGet("login", (bool firstApi = false, bool secondApi = false, bool masterApi = true) =>
     Results.SignIn(
         new ClaimsPrincipal(
             new ClaimsIdentity(
                 [
+                    new Claim("user-id", Guid.NewGuid().ToString("N")),
                     new Claim("sub", Guid.NewGuid().ToString()),
                     new Claim("first-api-access", firstApi.ToString()),
-                    new Claim("second-api-access", secondApi.ToString())
+                    new Claim("second-api-access", secondApi.ToString()),
+                    new Claim("master-api-access", masterApi.ToString()),
                 ],
                 BearerTokenDefaults.AuthenticationScheme)),
         authenticationScheme: BearerTokenDefaults.AuthenticationScheme));
