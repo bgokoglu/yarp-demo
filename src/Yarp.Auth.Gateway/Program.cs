@@ -1,5 +1,7 @@
 using System.Security.Claims;
+using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.BearerToken;
+using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +21,19 @@ builder.Services
 
         o.AddPolicy("second-api-access",
             policy => policy.RequireAuthenticatedUser().RequireClaim("second-api-access", true.ToString()));
+        
+        o.AddPolicy("master-api-access",
+            policy => policy.RequireAuthenticatedUser().RequireClaim("master-api-access", true.ToString()));
     });
+
+builder.Services.AddRateLimiter(_ => _
+    .AddFixedWindowLimiter(policyName: "FixedRateLimiter", options =>
+    {
+        options.Window = TimeSpan.FromSeconds(10);
+        options.PermitLimit = 4;
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+    }));
 
 var app = builder.Build();
 
@@ -38,9 +52,8 @@ app.MapGet("login", (bool firstApi = false, bool secondApi = false, bool masterA
         authenticationScheme: BearerTokenDefaults.AuthenticationScheme));
 
 app.UseAuthentication();
-
 app.UseAuthorization();
-
+app.UseRateLimiter();
 app.MapReverseProxy();
 
 app.Run();
